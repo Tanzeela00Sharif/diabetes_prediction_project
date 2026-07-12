@@ -11,8 +11,8 @@ import pandas as pd
 # -----------------------------
 # Load trained model and columns
 # -----------------------------
-model = joblib.load('model.pkl')
-model_columns = joblib.load('columns.pkl')
+model = joblib.load('diabeties_model.pkl')
+model_columns = joblib.load('diabeties_columns.pkl')
 
 # -----------------------------
 # Page config
