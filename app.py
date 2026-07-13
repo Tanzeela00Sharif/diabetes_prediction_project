@@ -69,7 +69,7 @@ header[data-testid="stHeader"] {
 /* ---------- HERO ---------- */
 .hero {
     background-color: #0D0D0D;
-    padding: 80px 48px 90px 48px;
+    padding: 40px 48px 36px 48px;
     position: relative;
     overflow: hidden;
 }
@@ -131,8 +131,8 @@ header[data-testid="stHeader"] {
 }
 .pulse-line {
     width: 100%;
-    height: 60px;
-    margin-top: 50px;
+    height: 50px;
+    margin-top: 30px;
     opacity: 0.85;
 }
 
@@ -206,6 +206,20 @@ div.stButton > button:hover {
     background-color: #FFFFFF;
     padding: 10px 48px 40px 48px;
 }
+.result-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 34px;
+    letter-spacing: 0.5px;
+    margin: 14px 0 6px 0;
+    line-height: 1.3;
+}
+.result-positive {
+    color: #C62828;
+}
+.result-negative {
+    color: #1B5E20;
+}
 .footer {
     background-color: #0D0D0D;
     padding: 30px 48px;
@@ -245,7 +259,6 @@ st.markdown("""
     </div>
     <div class="hero-badges">
         <div class="badge-primary">CHECK YOUR RISK</div>
-        <div class="badge-secondary">HOW IT WORKS</div>
     </div>
     <svg class="pulse-line" viewBox="0 0 1200 60" preserveAspectRatio="none">
         <polyline points="0,30 100,30 130,5 160,55 190,30 350,30 380,10 410,50 440,30 600,30 630,5 660,55 690,30 850,30 880,10 910,50 940,30 1100,30 1130,5 1160,55 1190,30 1200,30"
@@ -309,9 +322,15 @@ if predict_clicked:
 
     st.subheader("Result")
     if prediction == 1:
-        st.error("⚠️ The model predicts this patient is **likely diabetic**.")
+        st.markdown(
+            '<div class="result-text result-positive">⚠️ LIKELY DIABETIC</div>',
+            unsafe_allow_html=True
+        )
     else:
-        st.success("✅ The model predicts this patient is **not likely diabetic**.")
+        st.markdown(
+            '<div class="result-text result-negative">✅ NOT LIKELY DIABETIC</div>',
+            unsafe_allow_html=True
+        )
 
     if proba is not None:
         st.write(f"Predicted probability of diabetes: **{proba:.2%}**")
