@@ -7,15 +7,15 @@ import sklearn
 # -----------------------------
 # Load trained model and columns
 # -----------------------------
-model = joblib.load('diabeties_model.pkl')
-model_columns = joblib.load('diabeties_columns.pkl')
+model = joblib.load('heart_model.pkl')
+model_columns = joblib.load('heart_columns.pkl')
 
 # -----------------------------
 # Page config
 # -----------------------------
 st.set_page_config(
-    page_title="Diabetes Prediction App",
-    page_icon="🩺",
+    page_title="Heart Disease Prediction App",
+    page_icon="❤️",
     layout="wide"
 )
 
@@ -237,7 +237,15 @@ div.stButton > button:hover {
 # -----------------------------
 st.markdown("""
 <div class="navbar">
-    <div class="navbar-title">🩺 DIABETES PREDICTOR</div>
+    <div class="navbar-title" style="display:flex; align-items:center; gap:10px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#E8385C">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
+                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5
+                     c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        HEART DISEASE PREDICTOR
+    </div>
     <div class="navbar-links">
         <a href="#">ABOUT</a>
         <a href="#">HOW IT WORKS</a>
@@ -251,10 +259,10 @@ st.markdown("""
 st.markdown("""
 <div class="hero">
     <div class="hero-eyebrow">MACHINE LEARNING · HEALTH SCREENING</div>
-    <div class="hero-title">PREDICTING YOUR <span>DIABETES</span> RISK !</div>
+    <div class="hero-title">PREDICTING YOUR <span>HEART DISEASE</span> RISK !</div>
     <div class="hero-desc">
-        This tool uses a trained machine learning model to estimate the likelihood of diabetes
-        based on patient health metrics. Enter the details below to generate a prediction.
+        This tool uses a trained machine learning model to estimate the likelihood of heart
+        disease based on patient health metrics. Enter the details below to generate a prediction.
         For educational purposes only — not a substitute for professional medical advice.
     </div>
     <div class="hero-badges">
@@ -272,21 +280,27 @@ st.markdown("""
 # -----------------------------
 st.markdown('<div class="form-section">', unsafe_allow_html=True)
 st.markdown('<div class="form-heading">PATIENT DATA</div>', unsafe_allow_html=True)
-st.markdown('<div class="form-subheading">Input the patient\'s health metrics below</div>', unsafe_allow_html=True)
+st.markdown('<div class="form-subheading">Input the patient\'s health metrics below to check heart disease risk</div>', unsafe_allow_html=True)
 
 c1, c2, c3, c4 = st.columns(4)
 with c1:
-    pregnancies = st.number_input("🩸 Pregnancies", min_value=0, max_value=20, value=1, step=1)
-    insulin = st.number_input("🩸 Insulin Level", min_value=0, max_value=900, value=80)
+    age = st.number_input("🩸 Age", min_value=1, max_value=120, value=45, step=1)
+    fbs = st.selectbox("🩸 Fasting Blood Sugar > 120 mg/dl", options=[0, 1], format_func=lambda x: "Yes" if x == 1 else "No")
+    slope = st.selectbox("🩸 Slope of Peak Exercise ST Segment", options=[0, 1, 2])
 with c2:
-    glucose = st.number_input("🩸 Glucose Level", min_value=0, max_value=300, value=120)
-    bmi = st.number_input("🩸 BMI", min_value=0.0, max_value=70.0, value=25.0, step=0.1)
+    sex = st.selectbox("🩸 Sex", options=[0, 1], format_func=lambda x: "Male" if x == 1 else "Female")
+    restecg = st.selectbox("🩸 Resting ECG Results", options=[0, 1, 2])
+    ca = st.selectbox("🩸 Number of Major Vessels (0–3)", options=[0, 1, 2, 3])
 with c3:
-    blood_pressure = st.number_input("🩸 Blood Pressure (mm Hg)", min_value=0, max_value=200, value=70)
-    dpf = st.number_input("🩸 Diabetes Pedigree Function", min_value=0.0, max_value=3.0, value=0.5, step=0.01)
+    cp = st.selectbox("🩸 Chest Pain Type", options=[0, 1, 2, 3])
+    thalach = st.number_input("🩸 Max Heart Rate Achieved", min_value=60, max_value=220, value=150)
+    thal = st.selectbox("🩸 Thalassemia", options=[0, 1, 2, 3])
 with c4:
-    skin_thickness = st.number_input("🩸 Skin Thickness (mm)", min_value=0, max_value=100, value=20)
-    age = st.number_input("🩸 Age", min_value=1, max_value=120, value=30, step=1)
+    trestbps = st.number_input("🩸 Resting Blood Pressure", min_value=80, max_value=220, value=120)
+    exang = st.selectbox("🩸 Exercise Induced Angina", options=[0, 1], format_func=lambda x: "Yes" if x == 1 else "No")
+    oldpeak = st.number_input("🩸 ST Depression (Oldpeak)", min_value=0.0, max_value=10.0, value=1.0, step=0.1)
+
+chol = st.number_input("🩸 Serum Cholesterol (mg/dl)", min_value=100, max_value=600, value=200)
 
 st.write("")
 b1, b2, b3 = st.columns([1, 1, 1])
@@ -302,14 +316,19 @@ st.markdown('<div class="result-section">', unsafe_allow_html=True)
 
 if predict_clicked:
     input_dict = {
-        "Pregnancies": pregnancies,
-        "Glucose": glucose,
-        "BloodPressure": blood_pressure,
-        "SkinThickness": skin_thickness,
-        "Insulin": insulin,
-        "BMI": bmi,
-        "DiabetesPedigreeFunction": dpf,
-        "Age": age,
+        "age": age,
+        "sex": sex,
+        "cp": cp,
+        "trestbps": trestbps,
+        "chol": chol,
+        "fbs": fbs,
+        "restecg": restecg,
+        "thalach": thalach,
+        "exang": exang,
+        "oldpeak": oldpeak,
+        "slope": slope,
+        "ca": ca,
+        "thal": thal,
     }
 
     input_df = pd.DataFrame([input_dict])
@@ -323,17 +342,17 @@ if predict_clicked:
     st.subheader("Result")
     if prediction == 1:
         st.markdown(
-            '<div class="result-text result-positive">⚠️ LIKELY DIABETIC</div>',
+            '<div class="result-text result-positive">⚠️ LIKELY HEART DISEASE</div>',
             unsafe_allow_html=True
         )
     else:
         st.markdown(
-            '<div class="result-text result-negative">✅ NOT LIKELY DIABETIC</div>',
+            '<div class="result-text result-negative">✅ NOT LIKELY HEART DISEASE</div>',
             unsafe_allow_html=True
         )
 
     if proba is not None:
-        st.write(f"Predicted probability of diabetes: **{proba:.2%}**")
+        st.write(f"Predicted probability of heart disease: **{proba:.2%}**")
         st.progress(min(max(proba, 0.0), 1.0))
 
     st.caption(
@@ -348,6 +367,6 @@ st.markdown('</div>', unsafe_allow_html=True)
 # -----------------------------
 st.markdown("""
 <div class="footer">
-    © 2026 DIABETES PREDICTOR · FOR EDUCATIONAL USE ONLY
+    © 2026 HEART DISEASE PREDICTOR · FOR EDUCATIONAL USE ONLY
 </div>
 """, unsafe_allow_html=True)
