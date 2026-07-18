@@ -251,17 +251,14 @@ st.markdown("""
         <a href="#">HOW IT WORKS</a>
     </div>
 </div>
-("""
-
+"""
 <div class="navbar">
 
     <div class="navbar-title" style="display:flex; align-items:center; gap:8px;">
 
         <svg width="22" height="22" viewBox="0 0 24 24" fill="#E8385C">
 
-            <path d="M12 21s-6.7-4.35-9.3-8.1C.8 10.1 1.4 6.6 4.3 5 6.4 3.8 9 4.3 12 7.2
-
-                     15-4.3 17.6-3.8 19.7-5 22.6-6.6 23.2-10.1 21.3-12.9 18.7-8.65 12-4.3 12-4.3 12-21z"/>
+            <path d="M12 21s-6.7-4.35-9.3-8.1C.8 10.1 1.4 6.6 4.3 5C6.4 3.8 9 4.3 12 7.2C15 4.3 17.6 3.8 19.7 5C22.6 6.6 23.2 10.1 21.3 12.9C18.7 17.35 12 21 12 21z"/>
 
         </svg>
 
@@ -269,9 +266,8 @@ st.markdown("""
 
     </div>
 
-    ...
-
 </div>
+"""
 
 """, unsafe_allow_html=True)
 """, unsafe_allow_html=True)
