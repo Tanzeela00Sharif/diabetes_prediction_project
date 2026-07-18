@@ -181,6 +181,19 @@ div[data-testid="stNumberInput"] {
     padding: 6px 6px 2px 6px;
 }
 
+div[data-testid="stSelectbox"] label {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: #4A4A4A !important;
+    font-size: 13px;
+    opacity: 1 !important;
+}
+div[data-testid="stSelectbox"] {
+    background-color: #E5E5E5;
+    border-radius: 4px;
+    padding: 6px 6px 2px 6px;
+}
+
 /* ---------- BUTTON ---------- */
 div.stButton > button {
     background-color: #E8385C;
@@ -237,19 +250,16 @@ div.stButton > button:hover {
 # -----------------------------
 st.markdown("""
 <div class="navbar">
-    <div class="navbar-title" style="display:flex; align-items:center; gap:10px;">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="#E8385C">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
-                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
-                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5
-                     c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-        </svg>
-        HEART DISEASE PREDICTOR
-    </div>
-    <div class="navbar-links">
-        <a href="#">ABOUT</a>
-        <a href="#">HOW IT WORKS</a>
-    </div>
+<div class="navbar-title" style="display:flex; align-items:center; gap:10px;">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="#E8385C">
+<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5 c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+</svg>
+HEART DISEASE PREDICTOR
+</div>
+<div class="navbar-links">
+<a href="#">ABOUT</a>
+<a href="#">HOW IT WORKS</a>
+</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -258,30 +268,19 @@ st.markdown("""
 # -----------------------------
 st.markdown("""
 <div class="hero">
-    <div class="hero-eyebrow">MACHINE LEARNING · HEALTH SCREENING</div>
-
-    <div class="hero-title">
-        PREDICTING YOUR <span>HEART DISEASE</span> RISK !
-    </div>
-
-    <div class="hero-desc">
-        This tool uses a trained machine learning model to estimate the likelihood of heart
-        disease based on patient health metrics. Enter the details below to generate a prediction.
-        For educational purposes only — not a substitute for professional medical advice.
-    </div>
-
-    <div class="hero-badges">
-        <div class="badge-primary">CHECK YOUR RISK</div>
-    </div>
-
-    <svg class="pulse-line" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <polyline 
-        points="0,30 100,30 130,5 160,55 190,30 350,30 380,10 410,50 440,30 600,30 630,5 660,55 690,30 850,30 880,10 910,50 940,30 1100,30 1130,5 1160,55 1190,30 1200,30"
-        fill="none" 
-        stroke="#E8385C" 
-        stroke-width="2.5"/>
-    </svg>
-
+<div class="hero-eyebrow">MACHINE LEARNING · HEALTH SCREENING</div>
+<div class="hero-title">
+PREDICTING YOUR <span>HEART DISEASE</span> RISK !
+</div>
+<div class="hero-desc">
+This tool uses a trained machine learning model to estimate the likelihood of heart disease based on patient health metrics. Enter the details below to generate a prediction. For educational purposes only — not a substitute for professional medical advice.
+</div>
+<div class="hero-badges">
+<div class="badge-primary">CHECK YOUR RISK</div>
+</div>
+<svg class="pulse-line" viewBox="0 0 1200 60" preserveAspectRatio="none">
+<polyline points="0,30 100,30 130,5 160,55 190,30 350,30 380,10 410,50 440,30 600,30 630,5 660,55 690,30 850,30 880,10 910,50 940,30 1100,30 1130,5 1160,55 1190,30 1200,30" fill="none" stroke="#E8385C" stroke-width="2.5"/>
+</svg>
 </div>
 """, unsafe_allow_html=True)
 
@@ -377,6 +376,6 @@ st.markdown('</div>', unsafe_allow_html=True)
 # -----------------------------
 st.markdown("""
 <div class="footer">
-    © 2026 HEART DISEASE PREDICTOR · FOR EDUCATIONAL USE ONLY
+© 2026 HEART DISEASE PREDICTOR · FOR EDUCATIONAL USE ONLY
 </div>
 """, unsafe_allow_html=True)
