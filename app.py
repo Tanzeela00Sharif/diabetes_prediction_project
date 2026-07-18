@@ -278,19 +278,29 @@ st.markdown("""
 st.markdown("""
 <div class="hero">
     <div class="hero-eyebrow">MACHINE LEARNING · HEALTH SCREENING</div>
-    <div class="hero-title">PREDICTING YOUR <span>HEART DISEASE</span> RISK !</div>
+
+    <div class="hero-title">
+        PREDICTING YOUR <span>HEART DISEASE</span> RISK !
+    </div>
+
     <div class="hero-desc">
         This tool uses a trained machine learning model to estimate the likelihood of heart
         disease based on patient health metrics. Enter the details below to generate a prediction.
         For educational purposes only — not a substitute for professional medical advice.
     </div>
+
     <div class="hero-badges">
         <div class="badge-primary">CHECK YOUR RISK</div>
     </div>
+
     <svg class="pulse-line" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <polyline points="0,30 100,30 130,5 160,55 190,30 350,30 380,10 410,50 440,30 600,30 630,5 660,55 690,30 850,30 880,10 910,50 940,30 1100,30 1130,5 1160,55 1190,30 1200,30"
-        fill="none" stroke="#E8385C" stroke-width="2.5"/>
+        <polyline 
+        points="0,30 100,30 130,5 160,55 190,30 350,30 380,10 410,50 440,30 600,30 630,5 660,55 690,30 850,30 880,10 910,50 940,30 1100,30 1130,5 1160,55 1190,30 1200,30"
+        fill="none" 
+        stroke="#E8385C" 
+        stroke-width="2.5"/>
     </svg>
+
 </div>
 """, unsafe_allow_html=True)
 
